@@ -9,8 +9,8 @@ namespace HangmanGame
     internal class Program
     {
         static Random random = new Random();
-        static string[] words = new string[10] { "Bubblegum", "Kiwifruit", "Keyhole", "Espionage", "Microwave", "Peekaboo", "Nightclub", "Unknown", "Jukebox", "Mystery" };
-       
+        static string[] words = new string[] { "Bubblegum", "Kiwifruit", "Keyhole", "Espionage", "Microwave", "Peekaboo", "Nightclub", "Unknown", "Jukebox", "Mystery", "Coffee cup", "Water bottle", "Dog walker" };
+        
         static void Main(string[] args)
         {
             string chosenWord = words[random.Next(0, words.Length)];
@@ -20,14 +20,17 @@ namespace HangmanGame
 
             for (int i = 0; i < word.Length; i++)
             {
-                word[i] = '_';
+                if (chosenWord.ElementAt(i) != ' ')
+                    word[i] = '_';
             }
 
             Console.WriteLine("HANGMAN GAME\n");
             Console.WriteLine("I'm thinking of a word, you have 10 guesses to figure out which word.\n");
 
             foreach(var c in word)
+            { 
                 Console.Write(c + " ");
+            }
 
             Console.WriteLine("\n");
             while(word.Contains('_') && guesses > 0)
